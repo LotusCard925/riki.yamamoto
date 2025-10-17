@@ -49,7 +49,7 @@
           <button class="action-btn share-btn" aria-label="共有">
             <span class="action-text">共有</span>
           </button>
-          <button class="action-btn install-btn" id="open-save-modal-button" aria-label="情報の保存">
+          <button class="action-btn save-btn" id="open-save-modal-button" aria-label="情報の保存">
             <span class="action-text">情報の保存</span>
           </button>
         </div>
@@ -354,8 +354,9 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // A2HS案内はモーダル内のボタンを押した時だけ表示する
       let blockA2HS = false; // legacy flag
-      let a2hsSuppressUntil = 0; // timestamp to suppress A2HS temporarily
+      let forceSuppressA2HS = true; // trueの間は案内を一切出さない
       const saveModal = document.getElementById('save-options-modal');
       const openBtn = document.getElementById('open-save-modal-button');
       const closeBtn = document.getElementById('close-modal-button');
@@ -363,19 +364,20 @@
 
       if (openBtn) openBtn.addEventListener('click', () => {
         if (saveModal) { saveModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-        a2hsSuppressUntil = Date.now() + 2000;
+        forceSuppressA2HS = true;
       });
       if (closeBtn) closeBtn.addEventListener('click', () => {
         if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
-        a2hsSuppressUntil = Date.now() + 3000;
       });
       if (saveModal) saveModal.addEventListener('click', (e) => {
-        if (e.target === saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; a2hsSuppressUntil = Date.now() + 3000; }
+        if (e.target === saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
       });
 
-      if (addToHomeBtn) addToHomeBtn.addEventListener('click', () => {
+      if (addToHomeBtn) addToHomeBtn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
         if (blockA2HS) { return; }
-        if (Date.now() < a2hsSuppressUntil) { return; }
+        // 明示的にこのボタンを押した時のみ案内を表示（他の操作では出さない）
         const instructions = `ホーム画面に追加する手順\n\n【iPhone/iPadの場合】\n1. Safariでサイトを開く\n2. 共有アイコンをタップ\n3. 「ホーム画面に追加」\n4. 「追加」をタップ\n\n【Android(Chrome)の場合】\n1. Chromeでサイトを開く\n2. 右上の「⋮」メニュー\n3. 「ホーム画面に追加」\n4. 案内に従って追加`;
         alert(instructions);
         if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
@@ -407,7 +409,7 @@
         vcardBtn.addEventListener('click', async (e) => {
           e.preventDefault();
           e.stopPropagation();
-          blockA2HS = true;
+          blockA2HS = true; // 保存時は案内を出さない
           const lines = [
             'BEGIN:VCARD',
             'VERSION:3.0',
@@ -448,8 +450,9 @@
           a.remove();
           setTimeout(()=> URL.revokeObjectURL(url), 1000);
           if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
+          // この処理後も案内は出さない
           setTimeout(()=> { blockA2HS = false; }, 1500);
-          a2hsSuppressUntil = Date.now() + 2000;
+          forceSuppressA2HS = true;
         });
       }
 

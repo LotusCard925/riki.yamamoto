@@ -62,7 +62,7 @@
           <button class="action-btn share-btn" aria-label="共有">
             <span class="action-text">共有</span>
           </button>
-          <button class="action-btn install-btn" id="open-save-modal-button" aria-label="情報の保存">
+          <button class="action-btn save-btn" id="open-save-modal-button" aria-label="情報の保存">
             <span class="action-text">情報の保存</span>
           </button>
         </div>
@@ -370,7 +370,9 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      let blockA2HS = false; // guard to avoid showing A2HS after vCard download
+      // A2HS案内はモーダル内のボタンを押した時だけ表示する
+      let blockA2HS = false; // legacy flag
+      let forceSuppressA2HS = true; // trueの間は案内を一切出さない
       const saveModal = document.getElementById('save-options-modal');
       const openBtn = document.getElementById('open-save-modal-button');
       const closeBtn = document.getElementById('close-modal-button');
@@ -378,6 +380,7 @@
 
       if (openBtn) openBtn.addEventListener('click', () => {
         if (saveModal) { saveModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        forceSuppressA2HS = true;
       });
       if (closeBtn) closeBtn.addEventListener('click', () => {
         if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
@@ -386,8 +389,11 @@
         if (e.target === saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
       });
 
-      if (addToHomeBtn) addToHomeBtn.addEventListener('click', () => {
+      if (addToHomeBtn) addToHomeBtn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
         if (blockA2HS) { return; }
+        // 明示的にこのボタンを押した時のみ案内を表示（他の操作では出さない）
         const instructions = `ホーム画面に追加する手順\n\n【iPhone/iPadの場合】\n1. Safariでサイトを開く\n2. 共有アイコンをタップ\n3. 「ホーム画面に追加」\n4. 「追加」をタップ\n\n【Android(Chrome)の場合】\n1. Chromeでサイトを開く\n2. 右上の「⋮」メニュー\n3. 「ホーム画面に追加」\n4. 案内に従って追加`;
         alert(instructions);
         if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
@@ -416,20 +422,40 @@
       // vCard generation for better mobile compatibility
       const vcardBtn = document.getElementById('download-vcard-button');
       if (vcardBtn) {
-        vcardBtn.addEventListener('click', (e) => {
+        vcardBtn.addEventListener('click', async (e) => {
           e.preventDefault();
           e.stopPropagation();
-          blockA2HS = true;
+          blockA2HS = true; // 保存時は案内を出さない
           const lines = [
             'BEGIN:VCARD',
             'VERSION:3.0',
             'FN:山元りき',
             'ORG:Riki Yamamoto',
             'TITLE:LinkedInを活用する高校生',
+            // PHOTO will be inserted here when available
             'URL:https://riki-yamamoto.vercel.app/',
             'NOTE:Riki Yamamoto | Profile',
             'END:VCARD'
           ];
+          // Try to embed profile image as PHOTO in vCard (base64)
+          try {
+            const imgUrl = 'images/riki.jpg';
+            const res = await fetch(imgUrl, { credentials: 'same-origin', cache: 'force-cache' });
+            if (res.ok) {
+              const blob = await res.blob();
+              const ab = await blob.arrayBuffer();
+              const bytes = new Uint8Array(ab);
+              let binary = '';
+              for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+              const b64 = btoa(binary);
+              const type = (blob.type && blob.type.indexOf('png') !== -1) ? 'PNG' : 'JPEG';
+              const photoLine = `PHOTO;ENCODING=b;TYPE=${type}:${b64}`;
+              // Insert after TITLE line (index 5 before URL)
+              lines.splice(5, 0, photoLine);
+            }
+          } catch (_) {
+            // ignore if image embedding fails; proceed without PHOTO
+          }
           const blob = new Blob([lines.join('\r\n')], { type: 'text/vcard;charset=utf-8' });
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
@@ -440,7 +466,9 @@
           a.remove();
           setTimeout(()=> URL.revokeObjectURL(url), 1000);
           if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
+          // この処理後も案内は出さない
           setTimeout(()=> { blockA2HS = false; }, 1500);
+          forceSuppressA2HS = true;
         });
       }
 

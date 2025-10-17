@@ -1,4 +1,4 @@
-const CACHE_NAME = 'profile-site-cache-v2';
+const CACHE_NAME = 'profile-site-cache-v3';
 const urlsToCache = [
   '/',
   '/index.html',
