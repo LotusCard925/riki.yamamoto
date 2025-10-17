@@ -1,0 +1,12 @@
+{
+  "name": "riki.yamamoto",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node generate-site.js",
+    "start": "serve dist -l $PORT"
+  },
+  "devDependencies": {
+    "serve": "14.2.1"
+  }
+}
