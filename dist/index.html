@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0d12">
+    <title>ラ・バンバ 薩摩タコス</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .hero {
+        /* coverにして大小様々な背景でも破綻しにくくする */
+        background: url('images/hecoさん背景2.png') center/cover no-repeat, linear-gradient(180deg, rgba(11,13,18,.3), rgba(11,13,18,.5)) !important;
+      }
+    </style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="{{ apple_app_title }}">
+    <link rel="apple-touch-icon" href="{{ apple_touch_icon }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="hero">
+        <div class="hero-inner">
+        </div>
+      </div>
+    </header>
+    <section class="identity-block" aria-label="プロフィール概要">
+      <img class="hero-avatar" src="images/Hicoさんアイコン.png" alt="プロフィール写真">
+      <div class="identity-info">
+      <p class="identity-title">ラ・バンバ 薩摩タコス【La Bamba satsuma tacos】</p>
+      <p class="identity-address">
+        <a href="https://maps.app.goo.gl/XtVJ3CYL8p4XD2XH9" target="_blank" rel="noopener" class="address-link">
+          📍 〒899-4332 鹿児島県霧島市国分中央１丁目７−７−２
+        </a>
+      </p>
+        <p class="identity-subtitle">タコス&タコライス&バーガー<br>テイクアウト専門店<br>店休日　【日・月】<br><span class="hours-label">営業時間:</span> <span class="hours-times">11時30分〜14時00分<br>17時00分〜18時30分</span></p>
+      </div>
+    </section>
+    <main class="card" role="main">
+
+      <section class="sns" aria-label="SNS リンク">
+        <div class="sns-grid" data-count="6">
+          <a class="sns-btn" href="https://www.instagram.com/la.bamba.satsuma.tacos/" target="_blank" rel="noopener" aria-label="Instagram">
+            <img src="images/Instagram.png" alt="Instagram">
+            <span class="label">Instagram</span>
+          </a>
+          <a class="sns-btn" href="https://line.me/ti/p/example" target="_blank" rel="noopener" aria-label="LINE">
+            <img src="images/LINE copy.png" alt="LINE">
+            <span class="label">LINE</span>
+          </a>
+          <a class="sns-btn" href="https://x.com/example" target="_blank" rel="noopener" aria-label="X">
+            <img src="images/X画像 copy.jpg" alt="X">
+            <span class="label">X</span>
+          </a>
+          <a class="sns-btn" href="https://youtube.com/@example" target="_blank" rel="noopener" aria-label="YouTube">
+            <img src="images/youtube.png" alt="YouTube">
+            <span class="label">YouTube</span>
+          </a>
+          <a class="sns-btn" href="https://facebook.com/example" target="_blank" rel="noopener" aria-label="Facebook">
+            <img src="images/facebook_icon copy.png" alt="Facebook">
+            <span class="label">Facebook</span>
+          </a>
+          <a class="sns-btn" href="https://tiktok.com/@example" target="_blank" rel="noopener" aria-label="TikTok">
+            <img src="images/TikTok.jpg" alt="TikTok">
+            <span class="label">TikTok</span>
+          </a>
+        </div>
+        <div class="action-buttons">
+          <button class="action-btn share-btn" aria-label="共有">
+            <span class="action-text">共有</span>
+          </button>
+          <button class="action-btn install-btn" aria-label="ホーム画面に追加">
+            <span class="action-text">ホーム画面に追加</span>
+          </button>
+        </div>
+      </section>
+
+
+      <section class="gallery" aria-label="フォトギャラリー">
+        <div class="gallery-grid">
+          <img src="images/IMG_2802.jpg" alt="IMG_2802">
+          <img src="images/IMG_2804.JPG" alt="IMG_2804">
+          <img src="images/IMG_2805.JPG" alt="IMG_2805">
+          <img src="images/IMG_2806.JPG" alt="IMG_2806">
+          <img src="images/IMG_2807.JPG" alt="IMG_2807">
+          <img src="images/IMG_2809.JPG" alt="IMG_2809">
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Install Instructions Modal -->
+    <div id="install-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>ホーム画面に追加する手順</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="instructions">
+            <h4>【iPhone/iPadの場合】</h4>
+            <ol>
+              <li>Safariでウェブサイトを開く</li>
+              <li>画面下部（または上部）の「共有」アイコンをタップ</li>
+              <li>「ホーム画面に追加」を選択</li>
+              <li>「追加」をタップ</li>
+            </ol>
+            
+            <h4>【Androidの場合 (Chrome)】</h4>
+            <ol>
+              <li>Chromeでウェブサイトを開く</li>
+              <li>右上の「⋮」メニューをタップ</li>
+              <li>「ホーム画面に追加」を選択</li>
+              <li>画面の指示に従い「追加」をタップ</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <small>© <span id="year"></span> La Bamba satsuma tacos</small>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear()
+      
+      // Register Service Worker for PWA
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+              // Check for updates
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    console.log('New content available!');
+                  }
+                });
+              });
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+      // Lightbox: open on hero background / avatar / gallery image click
+      ;(function(){
+        const modal = document.createElement('div')
+        modal.className = 'lightbox'
+        modal.innerHTML = `
+          <button class="lb-btn lb-close" aria-label="閉じる">✕</button>
+          <button class="lb-btn lb-prev" aria-label="前へ">‹</button>
+          <button class="lb-btn lb-next" aria-label="次へ">›</button>
+          <div class="lb-viewport">
+            <img class="lightbox-img" alt="preview">
+          </div>
+          <div class="lb-zoom">
+            <button class="lb-btn lb-zoom-in" aria-label="拡大">＋</button>
+            <button class="lb-btn lb-zoom-out" aria-label="縮小">－</button>
+            <button class="lb-btn lb-zoom-reset" aria-label="リセット">リセット</button>
+          </div>`
+        document.body.appendChild(modal)
+
+        const modalImg = modal.querySelector('.lightbox-img')
+        const btnClose = modal.querySelector('.lb-close')
+        const btnPrev = modal.querySelector('.lb-prev')
+        const btnNext = modal.querySelector('.lb-next')
+        const btnZoomIn = modal.querySelector('.lb-zoom-in')
+        const btnZoomOut = modal.querySelector('.lb-zoom-out')
+        const btnZoomReset = modal.querySelector('.lb-zoom-reset')
+
+        let galleryNodes = Array.from(document.querySelectorAll('.gallery-grid img'))
+        let gallerySrcs = galleryNodes.map(n => n.src)
+        let currentIndex = -1
+        let scale = 1
+        let tx = 0, ty = 0
+        let isDragging = false
+        let dragStartX = 0, dragStartY = 0
+
+        const applyTransform = () => {
+          modalImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`
+        }
+
+        const open = (src, index = -1) => {
+          modalImg.src = src
+          modal.classList.add('open')
+          document.body.style.overflow = 'hidden'
+          currentIndex = index
+          scale = 1; tx = 0; ty = 0
+          applyTransform()
+          // toggle nav buttons only for gallery
+          const showNav = index >= 0
+          btnPrev.style.display = showNav ? 'block' : 'none'
+          btnNext.style.display = showNav ? 'block' : 'none'
+        }
+        const close = () => {
+          modal.classList.remove('open')
+          document.body.style.overflow = ''
+          modalImg.src = ''
+          currentIndex = -1
+          scale = 1
+        }
+        const show = (delta) => {
+          if (currentIndex < 0) return
+          currentIndex = (currentIndex + delta + gallerySrcs.length) % gallerySrcs.length
+          modalImg.src = gallerySrcs[currentIndex]
+          scale = 1; tx = 0; ty = 0
+          applyTransform()
+        }
+
+        // Click targets: hero background, avatar and gallery images
+        const avatar = document.querySelector('.hero-avatar')
+        const hero = document.querySelector('.hero')
+        if (avatar) avatar.addEventListener('click', () => open(avatar.src))
+        // Extract background image url from computed style
+        if (hero) hero.addEventListener('click', () => {
+          const bg = getComputedStyle(hero).backgroundImage
+          // background-image can contain multiple layers; pick the first url(
+          const m = bg.match(/url\(["']?(.*?)["']?\)/)
+          if (m && m[1]) open(m[1])
+        })
+        galleryNodes.forEach((img, idx) => {
+          img.style.cursor = 'zoom-in'
+          img.addEventListener('click', () => open(img.src, idx))
+        })
+
+        // Close handlers
+        modal.addEventListener('click', (e) => { if (e.target === modal) close() })
+        btnClose.addEventListener('click', close)
+        window.addEventListener('keydown', (e) => { 
+          if (e.key === 'Escape') close()
+          if (e.key === 'ArrowLeft') show(-1)
+          if (e.key === 'ArrowRight') show(1)
+        })
+
+        // Nav buttons
+        btnPrev.addEventListener('click', (e) => { e.stopPropagation(); show(-1) })
+        btnNext.addEventListener('click', (e) => { e.stopPropagation(); show(1) })
+
+        // Zoom controls
+        btnZoomIn.addEventListener('click', (e)=>{ e.stopPropagation(); scale = Math.min(4, scale + 0.25); applyTransform() })
+        btnZoomOut.addEventListener('click', (e)=>{ e.stopPropagation(); scale = Math.max(1, scale - 0.25); if (scale===1) { tx=0; ty=0; } applyTransform() })
+        btnZoomReset.addEventListener('click', (e)=>{ e.stopPropagation(); scale = 1; tx = 0; ty = 0; applyTransform() })
+        modal.addEventListener('wheel', (e)=>{ e.preventDefault();
+          const prev = scale
+          scale = Math.max(1, Math.min(4, scale + (e.deltaY < 0 ? 0.1 : -0.1)))
+          // Optional: simple zoom toward cursor
+          const rect = modalImg.getBoundingClientRect()
+          const cx = e.clientX - rect.left - rect.width/2
+          const cy = e.clientY - rect.top - rect.height/2
+          if (prev !== 1 || scale !== 1) { tx -= cx * (scale/prev - 1); ty -= cy * (scale/prev - 1) }
+          if (scale===1) { tx=0; ty=0 }
+          applyTransform()
+        }, { passive: false })
+
+        // Drag/pan when zoomed
+        const viewport = modal.querySelector('.lb-viewport')
+        const startDrag = (x, y) => { if (scale <= 1) return; isDragging = true; dragStartX = x - tx; dragStartY = y - ty; modal.classList.add('dragging') }
+        const moveDrag = (x, y) => { if (!isDragging) return; tx = x - dragStartX; ty = y - dragStartY; applyTransform() }
+        const endDrag = () => { isDragging = false; modal.classList.remove('dragging') }
+        viewport.addEventListener('mousedown', (e)=>{ e.preventDefault(); startDrag(e.clientX, e.clientY) })
+        window.addEventListener('mousemove', (e)=> moveDrag(e.clientX, e.clientY))
+        window.addEventListener('mouseup', endDrag)
+
+        // Touch swipe and pinch
+        let touchStartX = 0
+        let pinchStartDist = 0
+        const getDist = (t) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY)
+        modal.addEventListener('touchstart', (e)=>{
+          if (e.touches.length === 1) { touchStartX = e.touches[0].clientX; if (scale>1) startDrag(e.touches[0].clientX, e.touches[0].clientY) }
+          if (e.touches.length === 2) { pinchStartDist = getDist(e.touches) }
+        }, { passive: true })
+        modal.addEventListener('touchmove', (e)=>{
+          if (e.touches.length === 2 && pinchStartDist) {
+            const d = getDist(e.touches)
+            const factor = d / pinchStartDist
+            scale = Math.max(1, Math.min(4, factor))
+            if (scale===1) { tx=0; ty=0 }
+            applyTransform()
+          } else if (e.touches.length === 1 && isDragging) {
+            moveDrag(e.touches[0].clientX, e.touches[0].clientY)
+          }
+        }, { passive: true })
+        modal.addEventListener('touchend', (e)=>{
+          if (e.changedTouches.length === 1 && currentIndex >= 0 && !pinchStartDist) {
+            const dx = e.changedTouches[0].clientX - touchStartX
+            if (Math.abs(dx) > 50) show(dx < 0 ? 1 : -1)
+          }
+          if (e.touches.length < 2) pinchStartDist = 0
+          if (e.touches.length === 0) endDrag()
+        })
+      })()
+      
+      // Share and Install buttons functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const shareBtn = document.querySelector('.share-btn');
+        const installBtn = document.querySelector('.install-btn');
+        const installModal = document.getElementById('install-modal');
+        const modalClose = document.querySelector('.modal-close');
+        
+        // Share functionality
+        if (shareBtn) {
+          shareBtn.addEventListener('click', async () => {
+            const shareData = {
+              title: 'ラ・バンバ 薩摩タコス',
+              text: '美味しいタコスとタコライスが楽しめるテイクアウト専門店です！',
+              url: window.location.href
+            };
+            
+            try {
+              if (navigator.share) {
+                await navigator.share(shareData);
+              } else {
+                // Fallback: copy to clipboard
+                await navigator.clipboard.writeText(window.location.href);
+                alert('URLをコピーしました！');
+              }
+            } catch (err) {
+              console.log('Share cancelled or failed:', err);
+              // User cancelled sharing, do nothing
+            }
+          });
+        }
+        
+        // Install instructions modal
+        if (installBtn) {
+          installBtn.addEventListener('click', () => {
+            installModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+          });
+        }
+        
+        // Close modal
+        if (modalClose) {
+          modalClose.addEventListener('click', () => {
+            installModal.style.display = 'none';
+            document.body.style.overflow = '';
+          });
+        }
+        
+        // Close modal when clicking outside
+        if (installModal) {
+          installModal.addEventListener('click', (e) => {
+            if (e.target === installModal) {
+              installModal.style.display = 'none';
+              document.body.style.overflow = '';
+            }
+          });
+        }
+      });
+    </script>
+  <!-- Lightbox overlay container is injected by script -->
+  </body>
+</html>

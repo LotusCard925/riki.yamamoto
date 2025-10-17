@@ -1,0 +1,32 @@
+{
+  "shop_name": "カフェ・ド・パリ【Café de Paris】",
+  "shop_bio": "本格フレンチカフェ<br>自家焙煎コーヒー専門店<br>店休日　【火曜日】<br><span class=\"hours-label\">営業時間:</span> <span class=\"hours-times\">8時00分〜18時00分<br>土日祝日は9時00分〜17時00分</span>",
+  "shop_address": "〒150-0001 東京都渋谷区神宮前3-5-12",
+  "shop_address_url": "https://maps.app.goo.gl/xxxxxxxx",
+  "page_title": "カフェ・ド・パリ",
+  "apple_app_title": "Café de Paris",
+  "apple_touch_icon": "images/placeholder_avatar.jpg",
+  "profile_image_url": "images/placeholder_avatar.jpg",
+  "background_image_url": "images/placeholder_header.jpg",
+  "gallery_images": [
+    "images/placeholder_avatar.jpg",
+    "images/placeholder_header.jpg"
+  ],
+  "share_title": "カフェ・ド・パリ",
+  "share_text": "本格フレンチカフェで美味しいコーヒーとパンが楽しめます！",
+  "footer_text": "Café de Paris",
+  "sns": [
+    { "label": "Instagram", "url": "https://instagram.com/yourshop", "icon": "icon_instagram.svg" },
+    { "label": "LINE", "url": "https://line.me/ti/p/yourline", "icon": "icon_line.svg" },
+    { "label": "X", "url": "https://x.com/yourshop", "icon": "icon_x.svg" },
+    { "label": "YouTube", "url": "https://youtube.com/@yourshop", "icon": "icon_youtube.svg" }
+  ],
+  "instagram_url": "",
+  "line_url": "",
+  "x_url": "",
+  "facebook_url": "",
+  "youtube_url": "",
+  "tiktok_url": "",
+  "threads_url": ""
+}
+

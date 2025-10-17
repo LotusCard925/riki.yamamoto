@@ -1,0 +1,32 @@
+{
+  "name": "ラ・バンバ 薩摩タコス",
+  "short_name": "La Bamba Tacos",
+  "description": "ラ・バンバ薩摩タコスの店舗情報とメニュー",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0d12",
+  "theme_color": "#0b0d12",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/Hicoさんアイコン.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/Hicoさんアイコン.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/Hicoさんアイコン.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["food", "restaurant"],
+  "lang": "ja"
+}
