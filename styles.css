@@ -163,6 +163,19 @@ main.card { flex: 1 0 auto; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .gallery-grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; display: block; background: #111; }
 
+.external-cta { margin: 12px auto 0; max-width: var(--page-max); padding: 0 var(--page-pad); text-align: center; }
+.mini-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: #007aff;
+  border-radius: 999px;
+  text-decoration: none;
+}
+.mini-btn:hover { background: #005ed1; }
+
 /* SNS grid */
 .sns { margin: 18px auto 0; max-width: 640px; padding: 0 var(--page-pad); }
 .sns-grid {
