@@ -422,19 +422,36 @@
             'END:VCARD'
           ];
           // Try to embed profile image as PHOTO in vCard (base64)
+          // Fix orientation by drawing onto a square canvas (cover) and exporting to PNG
           try {
             const imgUrl = '{{ profile_image_url }}';
-            const res = await fetch(imgUrl, { credentials: 'same-origin', cache: 'force-cache' });
-            if (res.ok) {
-              const blob = await res.blob();
-              const ab = await blob.arrayBuffer();
-              const bytes = new Uint8Array(ab);
-              let binary = '';
-              for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-              const b64 = btoa(binary);
-              const type = (blob.type && blob.type.indexOf('png') !== -1) ? 'PNG' : 'JPEG';
-              const photoLine = `PHOTO;ENCODING=b;TYPE=${type}:${b64}`;
-              // Insert after TITLE line (index 5 before URL)
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            const dataUrl = await new Promise((resolve, reject) => {
+              img.onload = () => {
+                const size = 512; // export size
+                const canvas = document.createElement('canvas');
+                canvas.width = size; canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                // cover crop
+                const iw = img.naturalWidth || img.width;
+                const ih = img.naturalHeight || img.height;
+                const scale = Math.max(size / iw, size / ih);
+                const dw = iw * scale;
+                const dh = ih * scale;
+                const dx = (size - dw) / 2;
+                const dy = (size - dh) / 2;
+                ctx.fillStyle = '#111';
+                ctx.fillRect(0, 0, size, size);
+                ctx.drawImage(img, dx, dy, dw, dh);
+                try { resolve(canvas.toDataURL('image/png')); } catch (e) { reject(e); }
+              };
+              img.onerror = reject;
+              img.src = imgUrl;
+            });
+            if (dataUrl && dataUrl.startsWith('data:image/')) {
+              const b64 = dataUrl.split(',')[1];
+              const photoLine = `PHOTO;ENCODING=b;TYPE=PNG:${b64}`;
               lines.splice(5, 0, photoLine);
             }
           } catch (_) {
