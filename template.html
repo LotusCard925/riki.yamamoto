@@ -30,7 +30,7 @@
     </header>
     <section class="identity-block" aria-label="プロフィール概要">
       <img class="hero-avatar" src="{{ profile_image_url }}" alt="プロフィール写真">
-      <div class="name-card">{{ shop_name }}</div>
+      <div class="name-card"><span id="name-text">{{ shop_name }}</span></div>
       <div class="identity-info">
       
       <p class="identity-address">
@@ -426,6 +426,13 @@
           if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
           setTimeout(()=> { blockA2HS = false; }, 1500);
         });
+      }
+
+      // If running as an installed PWA, change the displayed name
+      const isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone;
+      if (isStandalone) {
+        const nameEl = document.getElementById('name-text');
+        if (nameEl) nameEl.textContent = 'Riki / りき';
       }
     });
     </script>

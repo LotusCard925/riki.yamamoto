@@ -56,6 +56,7 @@ body::before {
   height: 240px;
   border-radius: 999px;
   object-fit: cover; /* どんな比率でも円形にフィット */
+  object-position: center center; /* 横向き見えを避け中央にフォーカス */
   border: 3px solid rgba(255,255,255,.85);
   box-shadow: 0 8px 30px rgba(0,0,0,.45);
   background: #111;
@@ -102,7 +103,7 @@ body::before {
 }
 .identity-name .latin { margin-left: 8px; font-weight: 600; opacity: .9; }
 .identity-title { margin: 4px 0 0; color: #000; font-size: 14px; }
-.identity-address { margin: 6px 0 0; color: #000; }
+.identity-address { margin: 2px 0 0; color: #000; }
 .identity-subtitle { margin: 2px 0 0; color: #000; font-size: 13px; }
 
 .address-link {

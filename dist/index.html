@@ -30,7 +30,7 @@
     </header>
     <section class="identity-block" aria-label="プロフィール概要">
       <img class="hero-avatar" src="images/riki.jpg" alt="プロフィール写真">
-      <div class="name-card">山元りき / Riki Yamamoto</div>
+      <div class="name-card"><span id="name-text">山元りき / Riki Yamamoto</span></div>
       <div class="identity-info">
       
       <p class="identity-address">
@@ -38,7 +38,7 @@
           📍 鹿児島在住
         </a>
       </p>
-        <p class="identity-subtitle">加治木工業高校（機械化）<br>LinkedInを通じてインタビュー活動をしています<br>LinkedInを活用する高校生<br>繋がり(縁)を大事にしてます<br>趣味：サッカー、ギター<br>全国各地のイベントに積極的に参加<br>ボランティア活動をしています</p>
+        <p class="identity-subtitle">加治木工業高校（機械化）<br>LinkedInを通じてインタビュー活動をしています<br>LinkedInを活用する高校生<br>繋がり(縁)を大事にしてます<br>趣味：サッカー、ギター<br>全国各地のイベントに積極的に参加<br>ボランティア活動をしています<br>2025年夏/ 富士山登山</p>
       </div>
     </section>
     <main class="card" role="main">
@@ -442,6 +442,13 @@
           if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
           setTimeout(()=> { blockA2HS = false; }, 1500);
         });
+      }
+
+      // If running as an installed PWA, change the displayed name
+      const isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone;
+      if (isStandalone) {
+        const nameEl = document.getElementById('name-text');
+        if (nameEl) nameEl.textContent = 'Riki / りき';
       }
     });
     </script>
