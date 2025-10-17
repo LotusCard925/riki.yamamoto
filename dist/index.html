@@ -349,7 +349,7 @@
         <p class="modal-title">保存方法を選択</p>
         <div class="modal-actions">
           <a
-            href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:山元りき%0AORG:Riki Yamamoto%0ATITLE:LinkedInを活用する高校生%0AURL:#%0ANOTE:Riki Yamamoto | Profile%0AEND:VCARD"
+            href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:山元りき%0AORG:Riki Yamamoto%0ATITLE:LinkedInを活用する高校生%0AURL:https://riki-yamamoto.vercel.app/%0ANOTE:Riki Yamamoto | Profile%0AEND:VCARD"
             download="山元りき.vcf"
             class="modal-button"
           >連絡先に保存</a>
@@ -362,6 +362,7 @@
             data-body-line2="鹿児島在住"
             data-instagram-url="https://www.instagram.com/rik.iyamayama?igsh=cjMxM3l5MnF6ZjZ3&utm_source=qr"
             data-linkedin-url="https://www.linkedin.com/in/%E4%BF%90%E8%BC%9D-%E5%B1%B1%E5%85%83-147984362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+            data-site-url="https://riki-yamamoto.vercel.app/"
             class="modal-button"
           >メールを自分に送信</a>
 
@@ -404,7 +405,8 @@
             emailBtn.dataset.bodyLine2 || '',
             '',
             emailBtn.dataset.instagramUrl || '',
-            emailBtn.dataset.linkedinUrl || ''
+            emailBtn.dataset.linkedinUrl || '',
+            emailBtn.dataset.siteUrl || ''
           ].filter((v, i, arr) => v !== undefined);
           const body = parts.join('\n');
           const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

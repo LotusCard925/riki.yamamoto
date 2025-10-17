@@ -26,6 +26,7 @@
   "LINKEDIN_URL": "https://www.linkedin.com/in/%E4%BF%90%E8%BC%9D-%E5%B1%B1%E5%85%83-147984362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   "RESERVE_URL": "",
   "SITE_TITLE": "Riki Yamamoto | Profile",
+  "SITE_URL": "https://riki-yamamoto.vercel.app/",
   "sns": [
     { "label": "LinkedIn", "url": "https://www.linkedin.com/in/%E4%BF%90%E8%BC%9D-%E5%B1%B1%E5%85%83-147984362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", "icon": "LinkedIn画像 copy.png" },
     { "label": "Instagram", "url": "https://www.instagram.com/rik.iyamayama?igsh=cjMxM3l5MnF6ZjZ3&utm_source=qr", "icon": "icon_instagram.svg" },
