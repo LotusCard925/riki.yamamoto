@@ -408,14 +408,17 @@
         emailBtn.addEventListener('click', (e) => {
           e.preventDefault();
           const subject = emailBtn.dataset.subject || '';
+          const ig = emailBtn.dataset.instagramUrl || '';
+          const li = emailBtn.dataset.linkedinUrl || '';
+          const site = emailBtn.dataset.siteUrl || '';
           const parts = [
             emailBtn.dataset.bodyLine1 || '',
             emailBtn.dataset.bodyLine2 || '',
             '',
-            emailBtn.dataset.instagramUrl || '',
-            emailBtn.dataset.linkedinUrl || '',
-            emailBtn.dataset.siteUrl || ''
-          ].filter((v, i, arr) => v !== undefined);
+            ig ? `Instagram（リンクはこちら）: ${ig}` : '',
+            li ? `LinkedIn（リンクはこちら）: ${li}` : '',
+            site ? `Vercelサイト（リンクはこちら）: ${site}` : ''
+          ].filter((v) => v !== '');
           const body = parts.join('\n');
           const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           window.location.href = mailto;
