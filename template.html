@@ -354,7 +354,8 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      let blockA2HS = false; // guard to avoid showing A2HS after vCard download
+      let blockA2HS = false; // legacy flag
+      let a2hsSuppressUntil = 0; // timestamp to suppress A2HS temporarily
       const saveModal = document.getElementById('save-options-modal');
       const openBtn = document.getElementById('open-save-modal-button');
       const closeBtn = document.getElementById('close-modal-button');
@@ -362,16 +363,19 @@
 
       if (openBtn) openBtn.addEventListener('click', () => {
         if (saveModal) { saveModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        a2hsSuppressUntil = Date.now() + 2000;
       });
       if (closeBtn) closeBtn.addEventListener('click', () => {
         if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
+        a2hsSuppressUntil = Date.now() + 3000;
       });
       if (saveModal) saveModal.addEventListener('click', (e) => {
-        if (e.target === saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
+        if (e.target === saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; a2hsSuppressUntil = Date.now() + 3000; }
       });
 
       if (addToHomeBtn) addToHomeBtn.addEventListener('click', () => {
         if (blockA2HS) { return; }
+        if (Date.now() < a2hsSuppressUntil) { return; }
         const instructions = `ホーム画面に追加する手順\n\n【iPhone/iPadの場合】\n1. Safariでサイトを開く\n2. 共有アイコンをタップ\n3. 「ホーム画面に追加」\n4. 「追加」をタップ\n\n【Android(Chrome)の場合】\n1. Chromeでサイトを開く\n2. 右上の「⋮」メニュー\n3. 「ホーム画面に追加」\n4. 案内に従って追加`;
         alert(instructions);
         if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
@@ -400,7 +404,7 @@
       // vCard generation for better mobile compatibility
       const vcardBtn = document.getElementById('download-vcard-button');
       if (vcardBtn) {
-        vcardBtn.addEventListener('click', (e) => {
+        vcardBtn.addEventListener('click', async (e) => {
           e.preventDefault();
           e.stopPropagation();
           blockA2HS = true;
@@ -410,10 +414,30 @@
             'FN:{{ PERSON_NAME }}',
             'ORG:{{ ORG_NAME }}',
             'TITLE:{{ TITLE }}',
+            // PHOTO will be inserted here when available
             'URL:{{ SITE_URL }}',
             'NOTE:{{ SITE_TITLE }}',
             'END:VCARD'
           ];
+          // Try to embed profile image as PHOTO in vCard (base64)
+          try {
+            const imgUrl = '{{ profile_image_url }}';
+            const res = await fetch(imgUrl, { credentials: 'same-origin', cache: 'force-cache' });
+            if (res.ok) {
+              const blob = await res.blob();
+              const ab = await blob.arrayBuffer();
+              const bytes = new Uint8Array(ab);
+              let binary = '';
+              for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+              const b64 = btoa(binary);
+              const type = (blob.type && blob.type.indexOf('png') !== -1) ? 'PNG' : 'JPEG';
+              const photoLine = `PHOTO;ENCODING=b;TYPE=${type}:${b64}`;
+              // Insert after TITLE line (index 5 before URL)
+              lines.splice(5, 0, photoLine);
+            }
+          } catch (_) {
+            // ignore if image embedding fails; proceed without PHOTO
+          }
           const blob = new Blob([lines.join('\r\n')], { type: 'text/vcard;charset=utf-8' });
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
@@ -425,6 +449,7 @@
           setTimeout(()=> URL.revokeObjectURL(url), 1000);
           if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
           setTimeout(()=> { blockA2HS = false; }, 1500);
+          a2hsSuppressUntil = Date.now() + 2000;
         });
       }
 
