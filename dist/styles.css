@@ -86,7 +86,7 @@ body::before {
 .identity-block .identity-name,
 .identity-block .identity-title,
 .identity-block .identity-subtitle { text-align: center; }
-.identity-info { display: grid; justify-items: center; grid-column: 1 / -1; text-align: center; width: min(100%, 640px); justify-self: center; margin-top: 6px; }
+.identity-info { display: grid; justify-items: center; grid-column: 1 / -1; text-align: center; width: 100%; max-width: 640px; justify-self: center; margin-top: 6px; box-sizing: border-box; margin-left: auto; margin-right: auto; overflow-wrap: anywhere; }
 .identity-info {
   background: rgba(255,255,255,0.78);
   color: #111827;
