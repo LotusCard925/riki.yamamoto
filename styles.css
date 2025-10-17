@@ -102,9 +102,9 @@ body::before {
   letter-spacing: .2px;
 }
 .identity-name .latin { margin-left: 8px; font-weight: 600; opacity: .9; }
-.identity-title { margin: 4px 0 0; color: #000; font-size: 14px; }
+.identity-title { margin: 4px 0 0; color: #000; font-size: 13px; }
 .identity-address { margin: 2px 0 0; color: #000; }
-.identity-subtitle { margin: 2px 0 0; color: #000; font-size: 13px; }
+.identity-subtitle { margin: 2px 0 0; color: #000; font-size: 12px; }
 
 .address-link {
   color: #000;
