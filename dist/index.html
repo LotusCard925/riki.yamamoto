@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#0b0d12">
-    <title>ラ・バンバ 薩摩タコス</title>
+    <title>山元 俐輝 | プロフィール</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -12,14 +12,14 @@
     <style>
       .hero {
         /* coverにして大小様々な背景でも破綻しにくくする */
-        background: url('images/hecoさん背景2.png') center/cover no-repeat, linear-gradient(180deg, rgba(11,13,18,.3), rgba(11,13,18,.5)) !important;
+        background: url('images/riki.background.jpg') center/cover no-repeat, linear-gradient(180deg, rgba(11,13,18,.3), rgba(11,13,18,.5)) !important;
       }
     </style>
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="{{ apple_app_title }}">
-    <link rel="apple-touch-icon" href="{{ apple_touch_icon }}">
+    <meta name="apple-mobile-web-app-title" content="Riki Yamamoto">
+    <link rel="apple-touch-icon" href="images/riki.jpg">
   </head>
   <body>
     <header class="site-header">
@@ -29,52 +29,41 @@
       </div>
     </header>
     <section class="identity-block" aria-label="プロフィール概要">
-      <img class="hero-avatar" src="images/Hicoさんアイコン.png" alt="プロフィール写真">
+      <img class="hero-avatar" src="images/riki.jpg" alt="プロフィール写真">
+      <div class="name-card">山元りき / Riki Yamamoto</div>
       <div class="identity-info">
-      <p class="identity-title">ラ・バンバ 薩摩タコス【La Bamba satsuma tacos】</p>
+      
       <p class="identity-address">
-        <a href="https://maps.app.goo.gl/XtVJ3CYL8p4XD2XH9" target="_blank" rel="noopener" class="address-link">
-          📍 〒899-4332 鹿児島県霧島市国分中央１丁目７−７−２
+        <a href="#" target="_blank" rel="noopener" class="address-link">
+          📍 鹿児島在住
         </a>
       </p>
-        <p class="identity-subtitle">タコス&タコライス&バーガー<br>テイクアウト専門店<br>店休日　【日・月】<br><span class="hours-label">営業時間:</span> <span class="hours-times">11時30分〜14時00分<br>17時00分〜18時30分</span></p>
+        <p class="identity-subtitle">加治木工業高校（機械化）<br>LinkedInを通じてインタビュー活動をしています<br>LinkedInを活用する高校生<br>繋がり(縁)を大事にしてます<br>趣味：サッカー、ギター<br>全国各地のイベントに積極的に参加<br>ボランティア活動をしています</p>
       </div>
     </section>
     <main class="card" role="main">
 
       <section class="sns" aria-label="SNS リンク">
-        <div class="sns-grid" data-count="6">
-          <a class="sns-btn" href="https://www.instagram.com/la.bamba.satsuma.tacos/" target="_blank" rel="noopener" aria-label="Instagram">
+        <div class="sns-grid" data-count="3">
+          <a class="sns-btn" href="https://www.linkedin.com/in/%E4%BF%90%E8%BC%9D-%E5%B1%B1%E5%85%83-147984362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img src="images/LinkedIn画像 copy.png" alt="LinkedIn">
+            <span class="label">LinkedIn</span>
+          </a>
+          <a class="sns-btn" href="https://www.instagram.com/rik.iyamayama?igsh=cjMxM3l5MnF6ZjZ3&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
             <img src="images/Instagram.png" alt="Instagram">
             <span class="label">Instagram</span>
           </a>
-          <a class="sns-btn" href="https://line.me/ti/p/example" target="_blank" rel="noopener" aria-label="LINE">
+          <a class="sns-btn" href="https://line.me/ti/p/w9hVnqdBCB" target="_blank" rel="noopener" aria-label="LINE">
             <img src="images/LINE copy.png" alt="LINE">
             <span class="label">LINE</span>
-          </a>
-          <a class="sns-btn" href="https://x.com/example" target="_blank" rel="noopener" aria-label="X">
-            <img src="images/X画像 copy.jpg" alt="X">
-            <span class="label">X</span>
-          </a>
-          <a class="sns-btn" href="https://youtube.com/@example" target="_blank" rel="noopener" aria-label="YouTube">
-            <img src="images/youtube.png" alt="YouTube">
-            <span class="label">YouTube</span>
-          </a>
-          <a class="sns-btn" href="https://facebook.com/example" target="_blank" rel="noopener" aria-label="Facebook">
-            <img src="images/facebook_icon copy.png" alt="Facebook">
-            <span class="label">Facebook</span>
-          </a>
-          <a class="sns-btn" href="https://tiktok.com/@example" target="_blank" rel="noopener" aria-label="TikTok">
-            <img src="images/TikTok.jpg" alt="TikTok">
-            <span class="label">TikTok</span>
           </a>
         </div>
         <div class="action-buttons">
           <button class="action-btn share-btn" aria-label="共有">
             <span class="action-text">共有</span>
           </button>
-          <button class="action-btn install-btn" aria-label="ホーム画面に追加">
-            <span class="action-text">ホーム画面に追加</span>
+          <button class="action-btn install-btn" id="open-save-modal-button" aria-label="情報の保存">
+            <span class="action-text">情報の保存</span>
           </button>
         </div>
       </section>
@@ -82,12 +71,10 @@
 
       <section class="gallery" aria-label="フォトギャラリー">
         <div class="gallery-grid">
-          <img src="images/IMG_2802.jpg" alt="IMG_2802">
-          <img src="images/IMG_2804.JPG" alt="IMG_2804">
-          <img src="images/IMG_2805.JPG" alt="IMG_2805">
-          <img src="images/IMG_2806.JPG" alt="IMG_2806">
-          <img src="images/IMG_2807.JPG" alt="IMG_2807">
-          <img src="images/IMG_2809.JPG" alt="IMG_2809">
+          <img src="images/riki1.jpg" alt="riki1">
+          <img src="images/riki2.jpg" alt="riki2">
+          <img src="images/riki3.jpg" alt="riki3">
+          <img src="images/riki4.jpg" alt="riki4">
         </div>
       </section>
 
@@ -123,7 +110,7 @@
     </div>
 
     <footer class="footer">
-      <small>© <span id="year"></span> La Bamba satsuma tacos</small>
+      <small>© <span id="year"></span> Riki Yamamoto</small>
     </footer>
 
     <script>
@@ -309,8 +296,8 @@
         if (shareBtn) {
           shareBtn.addEventListener('click', async () => {
             const shareData = {
-              title: 'ラ・バンバ 薩摩タコス',
-              text: '美味しいタコスとタコライスが楽しめるテイクアウト専門店です！',
+              title: '山元 俐輝',
+              text: '加治木工業高校 機械化｜インタビュー・探求・行動力',
               url: window.location.href
             };
             
@@ -357,5 +344,75 @@
       });
     </script>
   <!-- Lightbox overlay container is injected by script -->
+    <div id="save-options-modal" class="modal-overlay" style="display:none;">
+      <div class="modal-content">
+        <p class="modal-title">保存方法を選択</p>
+        <div class="modal-actions">
+          <a
+            href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:山元りき%0AORG:Riki Yamamoto%0ATITLE:LinkedInを活用する高校生%0AURL:#%0ANOTE:Riki Yamamoto | Profile%0AEND:VCARD"
+            download="山元りき.vcf"
+            class="modal-button"
+          >連絡先に保存</a>
+
+          <a
+            id="send-email-button"
+            href="#"
+            data-subject="山元りきの連絡先"
+            data-body-line1="山元りきの連絡先です。"
+            data-body-line2="鹿児島在住"
+            data-instagram-url="https://www.instagram.com/rik.iyamayama?igsh=cjMxM3l5MnF6ZjZ3&utm_source=qr"
+            data-linkedin-url="https://www.linkedin.com/in/%E4%BF%90%E8%BC%9D-%E5%B1%B1%E5%85%83-147984362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+            class="modal-button"
+          >メールを自分に送信</a>
+
+          <button id="add-to-home-screen-button" class="modal-button">ホーム画面に追加</button>
+        </div>
+        <button id="close-modal-button" class="modal-close-button">戻る</button>
+      </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const saveModal = document.getElementById('save-options-modal');
+      const openBtn = document.getElementById('open-save-modal-button');
+      const closeBtn = document.getElementById('close-modal-button');
+      const addToHomeBtn = document.getElementById('add-to-home-screen-button');
+
+      if (openBtn) openBtn.addEventListener('click', () => {
+        if (saveModal) { saveModal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+      });
+      if (closeBtn) closeBtn.addEventListener('click', () => {
+        if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
+      });
+      if (saveModal) saveModal.addEventListener('click', (e) => {
+        if (e.target === saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
+      });
+
+      if (addToHomeBtn) addToHomeBtn.addEventListener('click', () => {
+        const instructions = `ホーム画面に追加する手順\n\n【iPhone/iPadの場合】\n1. Safariでサイトを開く\n2. 共有アイコンをタップ\n3. 「ホーム画面に追加」\n4. 「追加」をタップ\n\n【Android(Chrome)の場合】\n1. Chromeでサイトを開く\n2. 右上の「⋮」メニュー\n3. 「ホーム画面に追加」\n4. 案内に従って追加`;
+        alert(instructions);
+        if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
+      });
+
+      const emailBtn = document.getElementById('send-email-button');
+      if (emailBtn) {
+        emailBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const subject = emailBtn.dataset.subject || '';
+          const parts = [
+            emailBtn.dataset.bodyLine1 || '',
+            emailBtn.dataset.bodyLine2 || '',
+            '',
+            emailBtn.dataset.instagramUrl || '',
+            emailBtn.dataset.linkedinUrl || ''
+          ].filter((v, i, arr) => v !== undefined);
+          const body = parts.join('\n');
+          const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailto;
+          if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
+        });
+      }
+    });
+    </script>
   </body>
 </html>

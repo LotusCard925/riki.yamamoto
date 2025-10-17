@@ -15,7 +15,7 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  background: radial-gradient(1200px 800px at 50% -10%, #141a24 0%, var(--bg) 55%) no-repeat fixed;
+  background: url('images/riki.haikei.png') center/cover no-repeat fixed;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -62,23 +62,42 @@ body {
   gap: 16px;
   padding: 16px var(--page-pad) 8px;
 }
+.name-card {
+  grid-column: 1 / -1;
+  justify-self: center;
+  background: rgba(255,255,255,0.9);
+  color: #111827;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+}
 .identity-block .identity-name,
 .identity-block .identity-title,
-.identity-block .identity-subtitle { text-align: left; }
-.identity-info { display: grid; justify-items: start; grid-column: 1 / -1; }
+.identity-block .identity-subtitle { text-align: center; }
+.identity-info { display: grid; justify-items: center; grid-column: 1 / -1; text-align: center; width: min(100%, 640px); justify-self: center; margin-top: 6px; }
+.identity-info {
+  background: rgba(255,255,255,0.78);
+  color: #111827;
+  padding: 12px 14px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  backdrop-filter: saturate(110%) blur(2px);
+}
 .identity-name {
   margin: 0;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 800;
   letter-spacing: .2px;
 }
 .identity-name .latin { margin-left: 8px; font-weight: 600; opacity: .9; }
-.identity-title { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
-.identity-address { margin: 6px 0 0; }
-.identity-subtitle { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+.identity-title { margin: 4px 0 0; color: #000; font-size: 14px; }
+.identity-address { margin: 6px 0 0; color: #000; }
+.identity-subtitle { margin: 2px 0 0; color: #000; font-size: 13px; }
 
 .address-link {
-  color: var(--accent);
+  color: #000;
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
@@ -86,7 +105,7 @@ body {
 }
 
 .address-link:hover {
-  color: #8bb9ff;
+  color: #000;
   text-decoration: underline;
 }
 
@@ -253,6 +272,26 @@ main.card { flex: 1 0 auto; }
   padding: 20px;
 }
 
+/* Save Modal minimal styles */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.8);
+  display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px;
+}
+.modal-overlay .modal-content {
+  background: #fff; color: #333; border-radius: 16px; max-width: 420px; width: 100%;
+  max-height: 80vh; overflow: auto; padding: 24px; text-align: center;
+}
+.modal-title { font-size: 18px; font-weight: 600; margin: 0 0 16px; }
+.modal-actions { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+.modal-button {
+  display: block; width: 100%; padding: 14px 20px; background: #007aff; color: #fff;
+  text-decoration: none; border: 0; border-radius: 12px; font-weight: 700; font-size: 16px;
+}
+.modal-button:hover { background: #0056cc; }
+.modal-close-button {
+  width: 100%; padding: 12px; background: #f5f5f5; color: #666; border: 0; border-radius: 12px; font-weight: 600;
+}
+
 .modal-content {
   background: var(--bg-soft);
   border-radius: 16px;
@@ -408,7 +447,7 @@ main.card { flex: 1 0 auto; }
 
 @media (min-width: 480px) {
   .hero-inner { padding: 32px 24px; min-height: 200px; }
-  .identity-name { font-size: 20px; }
+  .identity-name { font-size: 32px; font-weight: 900; }
   .identity-title { font-size: 15px; }
   .hero-avatar { width: 280px; height: 280px; }
   .name { font-size: 24px; }

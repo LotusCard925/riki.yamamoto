@@ -1,21 +1,34 @@
 {
-  "sns": [
-    {
-      "label": "Instagram",
-      "url": "https://www.instagram.com/aview_kagoshima?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
-      "icon": "icon_instagram.svg"
-    }
+  "shop_name": "山元りき / Riki Yamamoto",
+  "shop_bio": "加治木工業高校（機械化）<br>LinkedInを通じてインタビュー活動をしています<br>LinkedInを活用する高校生<br>繋がり(縁)を大事にしてます<br>趣味：サッカー、ギター<br>全国各地のイベントに積極的に参加<br>ボランティア活動をしています",
+  "shop_address": "鹿児島在住",
+  "shop_address_url": "#",
+  "page_title": "山元 俐輝 | プロフィール",
+  "share_title": "山元 俐輝",
+  "share_text": "加治木工業高校 機械化｜インタビュー・探求・行動力",
+  "profile_image_url": "images/riki.jpg",
+  "background_image_url": "images/riki.background.jpg",
+  "footer_text": "Riki Yamamoto",
+  "apple_app_title": "Riki Yamamoto",
+  "apple_touch_icon": "images/riki.jpg",
+  "gallery_images": [
+    "images/riki1.jpg",
+    "images/riki2.jpg",
+    "images/riki3.jpg",
+    "images/riki4.jpg"
   ],
-  "shop_name": "aview_kagoshima",
-  "shop_bio": "月~金11:00~19:00 、土日祝10:45~19:00。無休。お問合せはDM・お電話にて<br>（ご対応は<span class=\"hours-label\">営業時間</span><span class=\"hours-times\">内となります）<br>駐車場は近隣のコインパーキングをご利用ください</span>",
-  "shop_address": "892-0846 加治屋町2-21 大宮ビル1F, Kagoshima, Kagoshima",
-  "profile_image_url": "images/aview_kagoshima_profile_image.jpg",
-  "background_image_url": "images/aview_kagoshima_background_image.png",
-  "page_title": "aview_kagoshima",
-  "share_title": "aview_kagoshima",
-  "share_text": "月~金11:00~19:00 、土日祝10:45~19:00。無休。お問合せはDM・お電話にて",
-  "footer_text": "aview_kagoshima",
-  "shop_address_url": "https://www.google.com/maps/search/?api=1&query=892-0846%20%E5%8A%A0%E6%B2%BB%E5%B1%8B%E7%94%BA2-21%20%E5%A4%A7%E5%AE%AE%E3%83%93%E3%83%AB1F%2C%20Kagoshima%2C%20Kagoshima",
-  "apple_app_title": "aview_kagoshima",
-  "apple_touch_icon": "images/aview_kagoshima_profile_image.jpg"
+  "PERSON_NAME": "山元りき",
+  "ORG_NAME": "Riki Yamamoto",
+  "TITLE": "LinkedInを活用する高校生",
+  "ADDRESS": "鹿児島在住",
+  "MAP_URL": "#",
+  "INSTAGRAM_URL": "https://www.instagram.com/rik.iyamayama?igsh=cjMxM3l5MnF6ZjZ3&utm_source=qr",
+  "LINKEDIN_URL": "https://www.linkedin.com/in/%E4%BF%90%E8%BC%9D-%E5%B1%B1%E5%85%83-147984362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+  "RESERVE_URL": "",
+  "SITE_TITLE": "Riki Yamamoto | Profile",
+  "sns": [
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/%E4%BF%90%E8%BC%9D-%E5%B1%B1%E5%85%83-147984362?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", "icon": "LinkedIn画像 copy.png" },
+    { "label": "Instagram", "url": "https://www.instagram.com/rik.iyamayama?igsh=cjMxM3l5MnF6ZjZ3&utm_source=qr", "icon": "icon_instagram.svg" },
+    { "label": "LINE", "url": "https://line.me/ti/p/w9hVnqdBCB", "icon": "icon_line.svg" }
+  ]
 }
