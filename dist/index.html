@@ -348,11 +348,7 @@
       <div class="modal-content">
         <p class="modal-title">保存方法を選択</p>
         <div class="modal-actions">
-          <a
-            href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AFN:山元りき%0AORG:Riki Yamamoto%0ATITLE:LinkedInを活用する高校生%0AURL:https://riki-yamamoto.vercel.app/%0ANOTE:Riki Yamamoto | Profile%0AEND:VCARD"
-            download="山元りき.vcf"
-            class="modal-button"
-          >連絡先に保存</a>
+          <a id="download-vcard-button" href="#" class="modal-button">連絡先に保存</a>
 
           <a
             id="send-email-button"
@@ -374,6 +370,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+      let blockA2HS = false; // guard to avoid showing A2HS after vCard download
       const saveModal = document.getElementById('save-options-modal');
       const openBtn = document.getElementById('open-save-modal-button');
       const closeBtn = document.getElementById('close-modal-button');
@@ -390,6 +387,7 @@
       });
 
       if (addToHomeBtn) addToHomeBtn.addEventListener('click', () => {
+        if (blockA2HS) { return; }
         const instructions = `ホーム画面に追加する手順\n\n【iPhone/iPadの場合】\n1. Safariでサイトを開く\n2. 共有アイコンをタップ\n3. 「ホーム画面に追加」\n4. 「追加」をタップ\n\n【Android(Chrome)の場合】\n1. Chromeでサイトを開く\n2. 右上の「⋮」メニュー\n3. 「ホーム画面に追加」\n4. 案内に従って追加`;
         alert(instructions);
         if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
@@ -412,6 +410,37 @@
           const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           window.location.href = mailto;
           if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
+        });
+      }
+
+      // vCard generation for better mobile compatibility
+      const vcardBtn = document.getElementById('download-vcard-button');
+      if (vcardBtn) {
+        vcardBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          blockA2HS = true;
+          const lines = [
+            'BEGIN:VCARD',
+            'VERSION:3.0',
+            'FN:山元りき',
+            'ORG:Riki Yamamoto',
+            'TITLE:LinkedInを活用する高校生',
+            'URL:https://riki-yamamoto.vercel.app/',
+            'NOTE:Riki Yamamoto | Profile',
+            'END:VCARD'
+          ];
+          const blob = new Blob([lines.join('\r\n')], { type: 'text/vcard;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = '山元りき.vcf';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          setTimeout(()=> URL.revokeObjectURL(url), 1000);
+          if (saveModal) { saveModal.style.display = 'none'; document.body.style.overflow = ''; }
+          setTimeout(()=> { blockA2HS = false; }, 1500);
         });
       }
     });

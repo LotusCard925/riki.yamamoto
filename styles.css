@@ -15,12 +15,21 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  background: url('images/riki.haikei.png') center/cover no-repeat fixed;
+  background: transparent;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
+}
+/* Make background truly fixed on mobile by using a fixed layer */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('images/riki.haikei.png') center/cover no-repeat;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .site-header { margin-top: 28px; }
