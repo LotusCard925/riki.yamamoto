@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node generate-site.js",
+    "build": "node --experimental-default-type=commonjs generate-site.js",
     "start": "serve dist -l $PORT"
   },
   "devDependencies": {
     "serve": "14.2.1"
+  },
+  "dependencies": {
+    "sharp": "0.33.4"
   }
 }

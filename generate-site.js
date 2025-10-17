@@ -1,16 +1,18 @@
 const fs = require('fs');
 const path = require('path');
+let sharp; try { sharp = require('sharp'); } catch (_) { sharp = null; }
 
-console.log('✅ サイト生成を開始します...');
+(async function main() {
+  console.log('✅ サイト生成を開始します...');
 
-// --- 準備 ---
-const templateHtml = fs.readFileSync('template.html', 'utf-8');
-const customerData = JSON.parse(fs.readFileSync('customer-data.json', 'utf-8'));
-const outputDir = 'dist'; // 完成品を保存するフォルダ名
+  // --- 準備 ---
+  const templateHtml = fs.readFileSync('template.html', 'utf-8');
+  const customerData = JSON.parse(fs.readFileSync('customer-data.json', 'utf-8'));
+  const outputDir = 'dist'; // 完成品を保存するフォルダ名
 
-// --- メイン処理 ---
-// 1. テンプレートの各プレースホルダーを、実際のデータで置換する
-let finalHtml = templateHtml;
+  // --- メイン処理 ---
+  // 1. テンプレートの各プレースホルダーを、実際のデータで置換する
+  let finalHtml = templateHtml;
 
 // SNSリンクの特別処理
 // 1) customer-data.json に sns 配列があればそれを優先（[{ label, url, icon }]）
@@ -69,45 +71,63 @@ const snsCount = snsLinks.length;
 const snsGridHtml = `<div class="sns-grid" data-count="${snsCount}">
           ${snsLinks.join('\n          ')}
         </div>`;
-finalHtml = finalHtml.replace('{{ sns_links }}', snsGridHtml);
+  finalHtml = finalHtml.replace('{{ sns_links }}', snsGridHtml);
 
 // ギャラリー画像の特別処理
-if (customerData.gallery_images && Array.isArray(customerData.gallery_images)) {
-  const galleryHtml = customerData.gallery_images.map(img => 
-    `<img src="${img}" alt="${path.basename(img, path.extname(img))}">`
-  ).join('\n          ');
-  finalHtml = finalHtml.replace('{{ gallery_images }}', galleryHtml);
-}
+  if (customerData.gallery_images && Array.isArray(customerData.gallery_images)) {
+    const galleryHtml = customerData.gallery_images.map(img => 
+      `<img src="${img}" alt="${path.basename(img, path.extname(img))}">`
+    ).join('\n          ');
+    finalHtml = finalHtml.replace('{{ gallery_images }}', galleryHtml);
+  }
 
 // その他のプレースホルダーを置換
 const excludedKeys = ['gallery_images', 'sns_links', 'sns', ...Object.keys(snsConfig).map(k => snsConfig[k].url)];
-for (const key in customerData) {
-  if (!excludedKeys.includes(key)) {
-    const placeholder = new RegExp(`{{ ${key} }}`, 'g');
-    finalHtml = finalHtml.replace(placeholder, customerData[key]);
+  for (const key in customerData) {
+    if (!excludedKeys.includes(key)) {
+      const placeholder = new RegExp(`{{ ${key} }}`, 'g');
+      finalHtml = finalHtml.replace(placeholder, customerData[key]);
+    }
   }
-}
 
 // 2. 完成品を保存する'dist'フォルダがなければ作成する
-if (!fs.existsSync(outputDir)){
-    fs.mkdirSync(outputDir);
-}
+  if (!fs.existsSync(outputDir)){
+      fs.mkdirSync(outputDir);
+  }
 
 // 3. 'dist'フォルダ内に、完成品である'index.html'を書き出す
-fs.writeFileSync(path.join(outputDir, 'index.html'), finalHtml);
+  fs.writeFileSync(path.join(outputDir, 'index.html'), finalHtml);
 
 // 4. サイトに必要な他のファイル（CSSや画像）もdistフォルダにコピーする
-if (fs.existsSync('styles.css')) {
-  fs.copyFileSync('styles.css', path.join(outputDir, 'styles.css'));
-}
-if (fs.existsSync('images')) {
-  fs.cpSync('images', path.join(outputDir, 'images'), { recursive: true });
-}
-if (fs.existsSync('manifest.json')) {
-  fs.copyFileSync('manifest.json', path.join(outputDir, 'manifest.json'));
-}
-if (fs.existsSync('sw.js')) {
-  fs.copyFileSync('sw.js', path.join(outputDir, 'sw.js'));
-}
+  if (fs.existsSync('styles.css')) {
+    fs.copyFileSync('styles.css', path.join(outputDir, 'styles.css'));
+  }
+  if (fs.existsSync('images')) {
+    fs.cpSync('images', path.join(outputDir, 'images'), { recursive: true });
+  }
+  if (fs.existsSync('manifest.json')) {
+    fs.copyFileSync('manifest.json', path.join(outputDir, 'manifest.json'));
+  }
+  if (fs.existsSync('sw.js')) {
+    fs.copyFileSync('sw.js', path.join(outputDir, 'sw.js'));
+  }
 
-console.log(`🎉 サイト生成が完了しました！ '${outputDir}' フォルダの中に完成品が作られました。`);
+// 5. PWAアイコンを正方形に整形（可能ならsharpで中心トリミング）
+  try {
+    const data = customerData;
+    const src = (data && data.profile_image_url) ? data.profile_image_url.replace(/^\//, '') : '';
+    const srcAbs = src && fs.existsSync(src) ? src : (fs.existsSync(path.join('images','riki.jpg')) ? path.join('images','riki.jpg') : '');
+    if (sharp && srcAbs) {
+      const sizes = [192, 512, 1024];
+      await fs.promises.mkdir(path.join(outputDir, 'images'), { recursive: true });
+      await Promise.all(sizes.map((size) => {
+        const out = path.join(outputDir, 'images', `app-icon-${size}.png`);
+        return sharp(srcAbs).resize(size, size, { fit: 'cover', position: 'centre' }).png().toFile(out);
+      }));
+    }
+  } catch (e) {
+    // sharpが無い/ビルド環境で失敗してもサイト生成は継続
+  }
+
+  console.log(`🎉 サイト生成が完了しました！ '${outputDir}' フォルダの中に完成品が作られました。`);
+})();
